@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal Portfolio</title>
+    {% include 'includes/stylesheets.html' %}
+</head>
+<body>
+
+<div class="loader_bg">
+    <div class="loader"></div>
+</div>
+
+<nav class="nav" id="nav">
+    <div class="container">
+        <div class="logo">
+            <a href="#">{{about}}</a>
+        </div>
+        <div class="main_list" id="mainListDiv">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="media_button">
+            <button class="main_media_button" id="mediaButton">
+                <span></span>
+                <span></span>
+                <!-- <span></span> -->
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+{% block content %}{% endblock %}
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <small>&copy;2019-2020 All Rights Reserved - Dipo Olaosun</small>
+            </div>
+        </div>
+    </div>
+</footer>
+{% include 'includes/scripts.html' %}
+</body>
+</html>

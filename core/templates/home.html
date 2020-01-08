@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .hero-container {
+        background-image: linear-gradient(rgba(27, 27, 27, 0.1), rgba(27, 27, 27)),
+        url("{{ about.front_page_image.url }}");
+    }
+</style>
+
+<body class="hero animated fadeIn">
+    <div class="hero-container ">
+        <div class="hero-content  " id="contact">
+
+            <!-- Hero Content -->
+            <h1 class="hero-title  animated fadeInLeft delay-1s">{{ about }}</h1>
+            <h4 class="hero-description  animated fadeInUp delay-1-7s">{{ about.short_description }}</h4>
+            <!-- Contact Icons -->
+            <div class="hero-contact-icons animated fadeInUp delay-2s">
+                <a href="tel:{{ about.user_number }}" class="true-icon flaticon-telephone"></a>
+                <a href="mailto:{{ about.user_email }}" class="true-icon flaticon-email"></a>
+                <a href="{{ about.github }}" class="true-icon flaticon-github-logo"></a>
+                <!-- <a href="{{ about.behance }}" class="true-icon flaticon-behance"></a> -->
+                <a href="{{ about.instagram }}" class="true-icon flaticon-instagram"></a>
+            </div>
+
+
+            <a href="#about"><i class="hero-scroll flaticon-download animated  fadeIn delay-3s"></i></a>
+        </div>
+    </div>
+    <span id="about"></span>
+    </section>
+    <main class="container-content">
+        <!-- About Section -->
+        <section class="container-about" data-aos="fade-up">
+            <h2 class="section-title header-3 ">About Me</h2>
+            <div class="about-content" data-aos="fade-up">
+                <h4>{{ about.description|linebreaks}}</h4>
+                <!-- Skills Section -->
+                <ul id="skills-list" data-aos="fade-up">
+                    {% for skills in skills %}
+                    <li id="skills-list-item">{{ skills.skill_type|title}}</li>
+                    {% endfor %}
+                </ul>
+                <div class="hero-skills-icons" data-aos="fade-up">
+                    <i class="true-icon flaticon-network "></i>
+                    <i class="true-icon flaticon-code-signs"></i>
+                    <i class="true-icon flaticon-brush"></i>
+                    <i class="true-icon flaticon-3d"></i>
+                    <i class="true-icon flaticon-web-design"></i>
+                </div>
+            </div>
+
+        </section>
+        </div>
+
+        <!-- Projects rojects Section -->
+        <a href="#" id="projects"></a>
+        <section class="container-projects">
+            <h1 class="header-3" data-aos="fade-up">Projects</h1>
+            <div class="container-box">
+                <section class="projects-container">
+                    {% for project in projects %}
+                    <div class="single-project-wrapper" data-open="{{project.id}}" id="project" data-aos="fade-up">
+                        <div class="single-project-img">
+                            <img src="{{ project.project_image.url }}" alt="project image" class="img-responsive">
+                        </div>
+                        <a class="single-project-content">
+                            <h4 class="heading-4"> {{project.title|title}}</h4>
+                            <p class="-text-font">{{ project.description|capfirst|truncatewords:22 }}</p>
+                            <hr class="line-break">
+                            {% for tech in project.technologies %}
+                            <i class="{{ tech }}" id="prj-tech-icon"
+                                class="prj-tech-icon text-font">{{ tech|capfirst }}</i>
+                            {% endfor %}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </section>
+
+
+                <!-- modal -->
+                {% for project in projects %}
+
+                <div class="modal" id="{{project.id}}" data-animation="slideInOutLeft">
+                    <div class="modal-dialog">
+                        <header class="modal-header">
+                            <h4 class="header-4">
+                                <h4 class="heading-4"> {{project.title|title}}</h4>
+                                <button class="close-modal" aria-label="close modal" data-close> ✕ </button>
+                        </header>
+                        <section class="modal-content">
+                            <div class="modal-project-img">
+                                <img src="{{ project.project_image.url }}" alt="Project image" class="img-responsive"
+                                    id="prj-img">
+                                <img src="{{ project.project_image_1.url }}" alt="Project image" class="img-responsive"
+                                    id="prj-img">
+                                <img src="{{ project.project_image_2.url }}" alt="Project image" class="img-responsive"
+                                    id="prj-img">
+                                <img src="{{ project.project_image_3.url }}" alt="Project image" class="img-responsive">
+                            </div>
+                            <div class="modal-project-text">
+                                <p class="-text">{{ project.description|capfirst}}</p>
+                                <p class="-text-font">{{ project.added_description|capfirst| linebreaks}}</p>
+                                {% for tech in project.technologies %}
+                                <i class="{{ tech }}" id="prj-tech-icon"
+                                    class="prj-tech-icon text-font">{{ tech|capfirst }}</i>
+
+                                {% endfor %}
+                                <button type="button" class="project-link-btn"><a target="-blank"
+                                        href="{{project.project_link}}">View Project</a></button>
+
+                        </section>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </section>
+        <!-- contact section -->
+        <div class="contact">
+            <h3>Get in touch, Lets Work Together.</h3>
+            <div> 
+                <button>
+                    <a href="mailto:{{about.user_email}}">Send Email <i></i></a>
+                </button>
+            </div>
+        </div>
+    </main>
+</body>
+{% endblock %}
